@@ -33,25 +33,25 @@ else:
 
 @app.errorhandler(404)
 def not_found(error) -> str:
-    """Not found handler"""
+    """ user Not found handler"""
     return jsonify({'error': 'Not found'}), 404
 
 
 @app.errorhandler(401)
 def unauthorized(error: Exception) -> Tuple[jsonify, int]:
-    """ Not auth handler """
+    """ user Not authenticated handler """
     return jsonify({'error': 'Unauthorized'}), 401
 
 
 @app.errorhandler(403)
 def forbidden(error: Exception) -> Tuple[jsonify, int]:
-    """ forbidden handler"""
+    """ user forbidden handler"""
     return jsonify({'error': 'Forbidden'}), 403
 
 
 @app.before_request
 def before_requests():
-    """ handle before rendering """
+    """ handles before rendering """
     if auth is None:
         return
     excluded_paths = ['/api/v1/status/',
